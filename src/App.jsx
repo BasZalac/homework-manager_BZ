@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Form from './components/Form'
 import List from './components/List'
+import Card from './wrappers/Card'
 function App() {
   const [data, setData] = useState([])
   const addData = (actualData) =>{
@@ -10,7 +11,9 @@ function App() {
   return (
     <>
       <Form sendDataToApp={addData}/>
+      <Card>
       <List datas = {data}/>
+      </Card>
     </>
   )
 }
