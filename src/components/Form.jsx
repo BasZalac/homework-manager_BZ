@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Swal from "sweetalert2"
 import moment from "moment"
+import classes from "./Form.module.css";
 const Form = ({sendDataToApp}) =>{
   const [subjectName, setSubjectName] = useState("Matematika");
   const topicRef = useRef();
@@ -52,7 +53,7 @@ const Form = ({sendDataToApp}) =>{
   return (
     <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="subjects">Tantárgy: </label>
-        <select name="subjects" id="subjects" onChange={(e) => setSubjectName(e.currentTarget.value)}>
+        <select className={classes.input} name="subjects" id="subjects" onChange={(e) => setSubjectName(e.currentTarget.value)}>
             <option value="Matematika">Matematika</option>
             <option value="Magyar Irodalom">Magyar Irodalom</option>
             <option value="Magyar Nyelvtan">Magyar Nyelvtan</option>
@@ -61,20 +62,20 @@ const Form = ({sendDataToApp}) =>{
         </select> <br />
         
         <label htmlFor="topic">Témakör: </label>
-        <input type="text" name="topic" id="topic" ref={topicRef}/> <br />
+        <input type="text" name="topic" id="topic" className={classes.input} ref={topicRef}/> <br />
         
         <label htmlFor="sdate">Feladás napja: </label>
-        <input type="date" name="sdate" id="sdate" min="2025-01-01" value={sDate} onChange={(e) => handleStartdate(e.currentTarget.value)}/> <br />
+        <input type="date" name="sdate" id="sdate" min="2025-01-01" className={classes.input} value={sDate} onChange={(e) => handleStartdate(e.currentTarget.value)}/> <br />
         
         <label htmlFor="deadline">Határidő: </label>
-        <input type="date" name="deadline" id="deadline" value={deadLine} onChange={(e) => handleDeadline(e.currentTarget.value)}/> <br />
-        
-        <label htmlFor="details">Feladat bővebb leírása: </label>
-        <textarea name="details" id="details" ref={detailsRef}></textarea> <br /> 
-
+        <input type="date" name="deadline" id="deadline" className={classes.input} value={deadLine} onChange={(e) => handleDeadline(e.currentTarget.value)}/> <br /> <br />
+        <div className={classes.formfield}>
+          <label htmlFor="details">Feladat bővebb leírása:</label>
+          <textarea name="details" id="details" className={classes.input} ref={detailsRef} rows="1" cols="15"></textarea> <br /> 
+        </div>
         <label htmlFor="type">Típusa: </label>
         <input type="radio" name="type" id="type" value="written" onChange={(e) => setType(e.currentTarget.value)} />Írásbeli
-        <input type="radio" name="type" id="type" value="oral" onChange={(e) => setType(e.currentTarget.value)}/>Szóbeli <br />
+        <input type="radio" name="type" id="type" value="oral" onChange={(e) => setType(e.currentTarget.value)}/>Szóbeli <br /> <br />
     
         <button onClick={Data}>Küldés</button>
     </form>
